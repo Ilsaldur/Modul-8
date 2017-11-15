@@ -2,7 +2,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 
-
 public class Account {
 	int id;
 	double balance;
@@ -14,7 +13,6 @@ public class Account {
 		balance = newBalance;
 		dateCreated = (GregorianCalendar) GregorianCalendar.getInstance();
 	}
-
 
 	public int getId() {
 		return id;
@@ -50,35 +48,35 @@ public class Account {
 
 		return false;
 	}
-	public boolean deposit (double amount) {
+
+	public boolean deposit(double amount) {
 		if (amount > 0) {
-			balance +=amount;
+			balance += amount;
 			return true;
 		}
-		
+
 		return false;
 	}
+	
 }
 
 class TestAccount {
 	public static void main(String[] args) {
 		Account account = new Account(1122, 2000);
-		
-		boolean canWithdraw = account.withdraw(2500);
+
+		double withdrawAmount = 2500;
+		boolean canWithdraw = account.withdraw(withdrawAmount);
 		System.out.println(canWithdraw);
-		
-		boolean canDeposit = account.deposit(3000);
-		System.out.println(canDeposit);
-		
+
+		double depositAmount = 3000;
+		boolean canDeposit = account.deposit(depositAmount);
+		System.out.println("Setter inn " + depositAmount + " til kontoen" + (canDeposit ? "ff" : "nei") );
+
 		Account.setAnnualInterestRate(4.5);
-		
-		
-		System.out.println(account.getBalance());
-		System.out.println(account.getMontlyInterest());
+
+		System.out.println("Saldoen er: " + account.getBalance() + "kr");
+		System.out.println("Månedlig rente er: " + account.getMontlyInterest() + "kr");
 		System.out.println(account.getDateCreated());
-		
+
 	}
 }
-
-
-
